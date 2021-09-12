@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <link rel="stylesheet" type="text/css" href="materialize/css/materialize.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <title>Native Client Installation :: Open in Edge</title>
+  </head>
+  <body>
+    <h1>Native Installation</h1>
+    <p>For the extension to send links to the Edge browser, there is one extra step to install the native integration. Please download, unzip and install the open-source native client.</p>
+    <ul id="steps"  class="browser-default">
+      <li class="step1">Click <a href="#" data-cmd="download">here</a> to download the package for you OS (Window, Mac, and Linux are currently supported) or click <a href="https://github.com/andy-portmen/native-client/releases" target="_blank">here</a> to browse all available download options.</li>
+      <li>Extract the downloaded package in a local directory</li>
+      <li class="linux">Now open a terminal in this directory (the directory that contains install.sh and uninstall.sh) and run <code>./install.sh</code></li>
+      <li class="windows">Now double-click the <code>install.bat</code> file</li>
+    </ul>
+    <div class="flex">
+      <input type="button" data-cmd="check" value="Check Connection">
+    </div>
+    <p class="note canhide">The installer script copies a few files to two different locations for your browser to be able to detect this native client. If you already have NodeJS in your system, the installed version of NodeJS will be used. So please make sure you have an up-to-date version of NodeJS installed. If you don't have this application, the portable version will be used. Read more <a target="_blank" href="https://github.com/andy-portmen/native-client">here</a>.</p>
+    <p class="note canhide">To completely remove this native client, run <code class="linux">./uninstall.sh</code><code class="windows">uninstall.bat</code>.</p>
+    <p class="note">To make sure the native client is accessible, click on the "<a href="#" data-cmd="check">Check Connection</a>" button. <span id="alternative">If you still get this page even when the "Check Button" reports successful connection, it means the application cannot be accessed (path is not correct in the <a href="#" data-cmd="options">options page</a>)</span>. If the path to the executable is correct and the native client is connected, you can debug the connection by enabling console logs in <a target="_blank" href="https://www.chromium.org/for-testers/enable-logging">Chrome and Opera</a> or <a target="_blank" href="https://developer.mozilla.org/docs/Tools/Browser_Console">Firefox</a>.</p>
+
+    <div class="guide canhide">
+      <h6>Command-line Switches</h6>
+      <details>
+        <summary>Partial list of available command-line options. Note that to apply these command-line arguments, you need to create a batch script on Windows and Bash script on Mac and Linux. Use this script as the destination source and pass the arguments to this script. The extension is going to call this file and the file executes the actual Edge browser.</summary>
+        <table>
+          <tr>
+            <td>--/prefetch:[1-8]</td>
+            <td>/prefetch:# arguments to use when launching various process types</td>
+          </tr>
+          <tr>
+            <td>--allow-external-pages</td>
+            <td>Allow access to external pages during web tests</td>
+          </tr>
+          <tr>
+            <td>--allow-file-access-from-files</td>
+            <td>By default, file:// URIs cannot read other file:// URIs. This is an override for developers who need the old behavior for testing.</td>
+          </tr>
+          <tr>
+            <td>--allow-insecure-localhost</td>
+            <td>Enables TLS/SSL errors on localhost to be ignored (no interstitial, no blocking of requests).</td>
+          </tr>
+          <tr>
+            <td>--app</td>
+            <td>Specifies that the associated value should be launched in "application" mode.</td>
+          </tr>
+          <tr>
+            <td>--audio-output-channels</td>
+            <td>Number of audio output channels. This will be used to send audio buffer with specific number of channels to ALSA and generate loopback audio. Default value is 2.</td>
+          </tr>
+          <tr>
+            <td>--browser-startup-dialog</td>
+            <td>Causes the browser process to display a dialog on launch.</td>
+          </tr>
+          <tr>
+            <td>--dark</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>--default-background-color</td>
+            <td>The background color to be used if the page doesn't specify one. Provided as RGBA integer value in hex, e.g. 'ff0000ff' for red or '00000000' for transparent.</td>
+          </tr>
+          <tr>
+            <td>--diagnostics</td>
+            <td>Triggers a plethora of diagnostic modes.</td>
+          </tr>
+          <tr>
+            <td>--disable-headless-mode</td>
+            <td>Disables the shell from beginning in headless mode. Tests will then attempt to use the hardware GPU for rendering. This is only followed when kRunWebTests is set.</td>
+          </tr>
+          <tr>
+            <td>--disable-system-font-check</td>
+            <td>Disables the check for the system font when specified.</td>
+          </tr>
+          <tr>
+            <td>--disk-cache-dir</td>
+            <td>Use a specific disk cache location, rather than one derived from the UserDatadir.</td>
+          </tr>
+          <tr>
+            <td>--enable-font-antialiasing</td>
+            <td>Enable font antialiasing for pixel tests.</td>
+          </tr>
+          <tr>
+            <td>--profiling-file</td>
+            <td>Specifies a location for profiling output. This will only work if chrome has been built with the gyp variable profiling=1 or gn arg enable_profiling=true. {pid} if present will be replaced by the pid of the process. {count} if present will be incremented each time a profile is generated for this process. The default is chrome-profile-{pid} for the browser and test-profile-{pid} for tests.</td>
+          </tr>
+        </table>
+      </details>
+    </div>
+
+    <div class="guide canhide">
+      <h6>Installation Guide</h6>
+      <ul class="browser-default">
+        <li>Windows: <a href="https://www.youtube.com/watch?v=yZAoy8SOd7o" target="_blank">YouTube</a></li>
+        <li>Mac &amp; Linux: <a href="https://www.youtube.com/watch?v=2asPoW2gJ-c" target="_blank">YouTube</a></li>
+      </ul>
+    </div>
+    <div class="guide canhide">
+      <h6>Usage Introduction</h6>
+      <ul class="browser-default">
+        <li>Windows: <a href="https://www.youtube.com/watch?v=W6hSo5Sx5tk" target="_blank">YouTube</a></li>
+      </ul>
+    </div>
+    <div id="notify"></div>
+    <script type="text/javascript" src="materialize/js/materialize.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
