@@ -9,6 +9,7 @@ const config = {
   enabled: false,
   hosts: [],
   urls: [],
+  keywords: [],
   reverse: false,
   topRedict: false
 };
@@ -22,18 +23,36 @@ const validate = (a, callback, isTop = false) => {
       }
     }
   }
+  // URL matching
   if (config.urls.length) {
     const href = a.href;
-    if (href) {
-      if (config.urls.some(h => href.startsWith(h))) {
+    try {
+      for (const h of config.urls) {
+        const m = new window.URLPattern(h);
+        if (m.test(href)) {
+          return config.reverse ? '' : callback(href);
+        }
+      }
+    }
+    catch (e) {
+      if (href && config.urls.some(h => href.startsWith(h))) {
         return config.reverse ? '' : callback(a.href);
       }
     }
   }
+  // keyword matching
+  if (config.keywords.length) {
+    const href = a.href;
+    if (href && config.keywords.some(w => href.indexOf(w) !== -1)) {
+      return config.reverse ? '' : callback(a.href);
+    }
+  }
   // reverse mode
-  if (config.reverse && a.href && (a.href.indexOf('#') === -1 || isTop)) {
-    if (a.href.startsWith('http') || a.href.startsWith('file')) {
-      return callback(a.href);
+  if (config.reverse) {
+    if (a.href && (a.href.startsWith('http') || a.href.startsWith('file'))) {
+      if ((a.getAttribute('href') || '').startsWith('#') === false || isTop) {
+        return callback(a.href);
+      }
     }
   }
 };

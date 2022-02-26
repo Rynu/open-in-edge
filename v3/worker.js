@@ -145,10 +145,11 @@ const open = (urls, closeIDs = []) => {
         exec(prefs.path, args, r => response(r, close));
       }
       else {
-        const args = app.runtime.windows.args
-          .map(a => a.replace('%url;', urls.join(' ')))
-          // Firefox is not detaching the process on Windows
-          .map(s => s.replace('start', /Firefox/.test(navigator.userAgent) ? 'start /WAIT' : 'start'));
+        // Firefox is not detaching the process on Windows
+        const args = [...app.runtime.windows.args];
+        args[1] = args[1].replace('start', navigator.userAgent.indexOf('Firefox') !== -1 ? 'start /WAIT' : 'start');
+        args[2] = args[2].replace('%url;', urls.join(' '));
+
         const name = app.runtime.windows.name;
         exec(name, args, res => {
           if (res && res.code !== 0) { // fallback to the old method
